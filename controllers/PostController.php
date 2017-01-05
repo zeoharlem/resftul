@@ -14,6 +14,21 @@
 class PostController extends BaseController{
     
     public function index(){
-        echo 'asdasd';
+        $getProduct = Products::find(array(
+                        'order'=>'RAND()'))->toArray();
+        $typeRes    = new Phalcon\Http\Response();
+        if($getProduct == true){
+            $typeRes->setHeader('Content-Type', 'application/json');
+            $typeRes->setJsonContent(array('status'=>'OK','data'=>$getProduct));
+            $typeRes->sendHeaders(); $typeRes->send();
+        }
+    }
+    
+    public function orderNow(){
+        
+    }
+    
+    protected function setBasket(){
+        
     }
 }

@@ -20,7 +20,7 @@ $di->set('db', function(){
         "host"      => "localhost",
         "username"  => "root",
         "password"  => "",
-        "dbname"    => "peprice"
+        "dbname"    => "pepperedrice"
     ));
 });
 
@@ -32,12 +32,12 @@ $eventsManager->attach('micro', function($event, $app){
     }
 });
 
-$app    = new Micro($di);
-$router = new Router();
+$app        = new Micro($di);
+$router     = new Router();
 $collection = new MicroCollection();
 
-$collection->setPrefix('/api/v1');
-$collection->setHandler(new PostController());
+$collection->setPrefix('/api/v1/post');
+$collection->setHandler('PostController', true);
 
 
 /**
