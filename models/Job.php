@@ -6,16 +6,15 @@
  * and open the template in the editor.
  */
 
-/**
- * Description of OrderController
- *
- * @author Theophilus
- */
+namespace Multiple\Frontend\Models;
 
-class Order extends BaseModel{
-    //put your code here
+/**
+ * Description of Job
+ *
+ * @author Theophilus Alamu <theophilus.alamu at gmail.com>
+ */
+class Job extends BaseModel{
     public function initialize(){
-        $this->allowEmptyStringValues(array(
-            'company','additional_info'));
+        $this->setSource('jobs');
     }
 }

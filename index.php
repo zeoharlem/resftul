@@ -11,6 +11,7 @@ $loader = new Loader();
 $loader->registerDirs(array(
     __DIR__ . '/models/',
     __DIR__ . '/controllers/',
+    __DIR__ . '/components/',
 ))->register();
 
 
@@ -31,6 +32,13 @@ $di->setShared('session', function(){
     return $session;
 });
 
+//Return custom components
+$di->setShared('component', function(){
+    $obj = new \stdClass();
+    $obj->helper    = new \Helper();
+    return $obj;
+});
+
 $eventsManager  = new EventsManager();
 //Listen to all the application events
 $eventsManager->attach('micro', function($event, $app){
@@ -40,7 +48,6 @@ $eventsManager->attach('micro', function($event, $app){
 });
 
 $app        = new Micro($di);
-$router     = new Router();
 $collection = new MicroCollection();
 
 $collection->setPrefix('/api/v1/post');
@@ -54,6 +61,8 @@ $collection->get('/', 'index');
 $collection->get('/basket/{param}','basket');
 $collection->get('/basket/{param}/{param1}','basket');
 $collection->get('/remove/{param}','remove');
+$collection->get('/order/{param}', 'order');
+$collection->get('/clear','clear');
 /**
  * Get all the products
  */
