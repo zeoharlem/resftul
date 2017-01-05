@@ -12,5 +12,8 @@
  * @author Theophilus
  */
 class PostController extends BaseController{
-    //put your code here
+    
+    public function index(){
+        echo 'asdasd';
+    }
 }

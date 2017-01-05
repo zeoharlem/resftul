@@ -39,6 +39,12 @@ $collection = new MicroCollection();
 $collection->setPrefix('/api/v1');
 $collection->setHandler(new PostController());
 
+
+/**
+ * Using controllers for accessing
+ */
+$collection->get('/', 'index');
+
 /**
  * Get all the products
  */
@@ -62,3 +68,5 @@ $app->get("/api/v1/product/delete/{primary_id}", function($category_id){
 });
 
 $app->setEventsManager($eventsManager);
+$app->mount($collection);
+$app->handle();
