@@ -24,6 +24,13 @@ $di->set('db', function(){
     ));
 });
 
+//Set session
+$di->setShared('session', function(){
+    $session = new \Phalcon\Session\Adapter\Files();
+    $session->start();
+    return $session;
+});
+
 $eventsManager  = new EventsManager();
 //Listen to all the application events
 $eventsManager->attach('micro', function($event, $app){
@@ -44,7 +51,9 @@ $collection->setHandler('PostController', true);
  * Using controllers for accessing
  */
 $collection->get('/', 'index');
-
+$collection->get('/basket/{param}','basket');
+$collection->get('/basket/{param}/{param1}','basket');
+$collection->get('/remove/{param}','remove');
 /**
  * Get all the products
  */
